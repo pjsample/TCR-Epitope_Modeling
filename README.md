@@ -9,6 +9,8 @@ CDR3 alpha, beta, or both were one-hot encoded to serve as input to the first co
 ### CNN Architecture
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/model_architecture.png "CNN architecture")
 
+### Data processing and training
+All TCR-epitope sequences corresponding to HLA-A\*02:01 were downloaded from IEDB. There are 6718 unique CDR3α sequences, 10055 unique CDR3β sequences, and only
 
 ### Model performance using the complete CDR3 alpha or beta chain
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/full_a_or_b_cdr_model_performance.png "Complete alpha or beta models")
@@ -16,10 +18,14 @@ CDR3 alpha, beta, or both were one-hot encoded to serve as input to the first co
 
 
 ### Model performance using only the V & J components
-#### Only the last two amino acids from the left and right side are retained. Then internal sequence was replaced with X's.
-A la *Jurtz et. al.*
-![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/vj_only_ALPHA_cdr_model_performance.png "VJ-only alpha model")
-![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/vj_only_BETA_cdr_model_performance.png "VJ-only beta model")
+In a similar manner to *Jurtz et. al.*, I evaluated the importance of the information in the V & J sequence elements alone. To do so, I masked (replaced with X) the internal part of the sequence and left the two AAs on the left side and the two AAs on the right side. For the joined CDR3α and CDR3β model, each was masked separately and then concatenated such that the middle of the sequence has four AAs (the left and right end both have two AAs).
+
+Comparing these results to the models trained on full sequences should be taken with the following caveat. This process reduced the number of unique sequences in the library. To prevent data leakage (the same sequences in the train and test set), all duplicate CDRs were moved to the training set, so the number of sequences for testing was reduced.
+
+![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/alpha_vj_only.png "VJ-only alpha model")
+![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/beta_vj_only.png "VJ-only beta model")
+![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/full_chain_vj_only.png "VJ-only alpha & beta model")
+
 
 ### Model hyperparameters
 **Conv. Layer 1:**  
