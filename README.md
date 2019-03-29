@@ -5,27 +5,27 @@
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/model_architecture.png "CNN architecture")
 
 <dl>
-  <dt>Conv. Layer 1:</dt>
-  <dd>Filters:70</dd>
-  <dd>Kernel size: 8</dd>
-  <dd>Activation: ReLU</dd>
-  <dt> Max pooling: 4</dt>
-  <dt>Conv. Layer 2:</dt>
-  <dd>Filters:70</dd>
-  <dd>Kernel size: 8</dd>
+  <dt>Conv. Layer 1:</dt>  
+  <dd>Filters:70</dd>  
+  <dd>Kernel size: 8</dd>  
   <dd>Activation: ReLU</dd>  
-  <dt>Dense (Epitope input):</dt>
-  <dd>Nodes: number of unique epitopes in training and test set</dd>
-  <dd>Activation: Linear</dd>
-  <dd>Concatenated with 2nd max pooling</dd> 
-  <dt>Dense:</dt>
-  <dd>Nodes: 200</dd>
-  <dd>Dropout probability: 0.2</dd>
-  <dd>Activation: ReLU</dd>
-  <dt>Dense:</dt>
-  <dd>Nodes: 1</dd>
-  <dd>Activation: sigmoid</dd>
-  <dd><i>Predict binding</i></dd>
+  <dt> Max pooling: 4</dt>  
+  <dt>Conv. Layer 2:</dt>  
+  <dd>Filters:70</dd>  
+  <dd>Kernel size: 8</dd>  
+  <dd>Activation: ReLU</dd>  
+  <dt>Dense (Epitope input):</dt>  
+  <dd>Nodes: number of unique epitopes in training and test set</dd>  
+  <dd>Activation: Linear</dd>  
+  <dd>Concatenated with 2nd max pooling</dd>   
+  <dt>Dense:</dt>  
+  <dd>Nodes: 200</dd>  
+  <dd>Dropout probability: 0.2</dd>  
+  <dd>Activation: ReLU</dd>  
+  <dt>Dense:</dt>  
+  <dd>Nodes: 1</dd>  
+  <dd>Activation: sigmoid</dd>  
+  <dd><i>Predict binding</i></dd>  
 
 ### Model performance using the complete CDR3 alpha or beta chain
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/full_a_or_b_cdr_model_performance.png "Complete alpha or beta models")
