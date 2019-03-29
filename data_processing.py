@@ -16,8 +16,8 @@ def load_and_prepare_data(iedb_csv, chain, select_epitopes, V_and_J_only=False, 
     df['set'] = 'true_binders'
 
     if chain == 'full_chain':
-        df = df.drop_duplicates(subset=['chain1'])
-        df = df.drop_duplicates(subset=['chain2'])
+        # df = df.drop_duplicates(subset=['chain1'])
+        # df = df.drop_duplicates(subset=['chain2'])
         df['full_chain'] = df['chain1'] + df['chain2']
         df['length'] = df['full_chain'].str.len()
         df = df[df['length'].between(20,31)]
@@ -43,8 +43,17 @@ def load_and_prepare_data(iedb_csv, chain, select_epitopes, V_and_J_only=False, 
     other_ep_tcrs['set'] = 'other_ep_tcrs'
 
     if V_and_J_only:
-        sub.loc[:, chain] = sub.loc[:, chain].apply(lambda x: reduce_seq_to_V_and_J(x))
-        other_ep_tcrs.loc[:, chain] = other_ep_tcrs.loc[:, chain].apply(lambda x: reduce_seq_to_V_and_J(x))
+        if chain == 'full_chain':
+            sub.loc[:, 'chain1'] = sub.loc[:, 'chain1'].apply(lambda x: reduce_seq_to_V_and_J(x))
+            sub.loc[:, 'chain2'] = sub.loc[:, 'chain2'].apply(lambda x: reduce_seq_to_V_and_J(x))
+            sub.loc[:, 'full_chain'] = sub.loc[:, 'chain1'] + sub.loc[:, 'chain2']
+
+            other_ep_tcrs.loc[:, 'chain1'] = other_ep_tcrs.loc[:, 'chain1'].apply(lambda x: reduce_seq_to_V_and_J(x))
+            other_ep_tcrs.loc[:, 'chain2'] = other_ep_tcrs.loc[:, 'chain2'].apply(lambda x: reduce_seq_to_V_and_J(x))
+            other_ep_tcrs.loc[:, 'full_chain'] = other_ep_tcrs.loc[:, 'chain1'] + other_ep_tcrs.loc[:, 'chain2']
+        else:
+            sub.loc[:, chain] = sub.loc[:, chain].apply(lambda x: reduce_seq_to_V_and_J(x))
+            other_ep_tcrs.loc[:, chain] = other_ep_tcrs.loc[:, chain].apply(lambda x: reduce_seq_to_V_and_J(x))            
 
     if show_summary:
         print('TCR-epitope breakdown after filtering:')
