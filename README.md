@@ -4,28 +4,6 @@
 ### CNN Architecture
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/model_architecture.png "CNN architecture")
 
-<dl>
-  <dt>Conv. Layer 1:</dt>  
-  <dd>Filters:70</dd>  
-  <dd>Kernel size: 8</dd>  
-  <dd>Activation: ReLU</dd>  
-  <dt> Max pooling: 4</dt>  
-  <dt>Conv. Layer 2:</dt>  
-  <dd>Filters:70</dd>  
-  <dd>Kernel size: 8</dd>  
-  <dd>Activation: ReLU</dd>  
-  <dt>Dense (Epitope input):</dt>  
-  <dd>Nodes: number of unique epitopes in training and test set</dd>  
-  <dd>Activation: Linear</dd>  
-  <dd>Concatenated with 2nd max pooling</dd>   
-  <dt>Dense:</dt>  
-  <dd>Nodes: 200</dd>  
-  <dd>Dropout probability: 0.2</dd>  
-  <dd>Activation: ReLU</dd>  
-  <dt>Dense:</dt>  
-  <dd>Nodes: 1</dd>  
-  <dd>Activation: sigmoid</dd>  
-  <dd><i>Predict binding</i></dd>  
 
 ### Model performance using the complete CDR3 alpha or beta chain
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/full_a_or_b_cdr_model_performance.png "Complete alpha or beta models")
@@ -38,3 +16,32 @@ A la *Jurtz et. al.*
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/vj_only_ALPHA_cdr_model_performance.png "VJ-only alpha model")
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/vj_only_BETA_cdr_model_performance.png "VJ-only beta model")
 
+### Model hyperparameters
+**Conv. Layer 1:**  
+- Filters:70
+- Kernel size: 8
+- Activation: ReLU  
+
+**Max pooling:** 4
+
+**Conv. Layer 2:**  
+- Filters:70
+- Kernel size: 8
+- Activation: ReLU  
+
+**Max pooling:** 4
+
+**Dense (Epitope input):**  
+- Nodes: number of unique epitopes in training and test set
+- Activation: Linear
+- Concatenated with 2nd max pooling  
+
+**Dense:**  
+- Nodes: 200
+- Dropout probability: 0.2
+- Activation: ReLU  
+
+**Dense:**  
+- Nodes: 1
+- Activation: sigmoid
+- *Predict binding*
