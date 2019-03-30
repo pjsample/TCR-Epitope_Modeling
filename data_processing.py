@@ -89,9 +89,12 @@ def make_synthetic_data(data, chain, epitopes, synthetics_to_make, tile_sequence
         
     return data
 
-def reduce_seq_to_V_and_J(seq):
-    X_len = len(seq) - 4
-    return seq[:2] + 'X' * X_len + seq[-2:]
+def reduce_seq_to_V_and_J(seq, short_seq=False):
+    if short_seq == False:
+        X_len = len(seq) - 4
+        return seq[:2] + 'X' * X_len + seq[-2:]
+    else:
+        return seq[:2] + seq[-2:]
 
 def one_hot_encode(seq):
     arr = np.zeros((len(aminos_dict), len(seq)))
@@ -109,16 +112,6 @@ def encode_epitopes(epitopes):
         arr[i] = 1
         d[_class] = arr      
     return d
-
-# def encode_epitopes(data, class_col):
-#     classes = data[class_col].unique()
-#     d = {}
-#     for i, _class in enumerate(classes):
-#         arr = np.zeros(len(classes), dtype=int)
-#         arr[i] = 1
-#         d[_class] = arr
-        
-#     return data[class_col].apply(lambda x: d[x])
 
 def swap_epitopes(current_ep, epitopes):
     new_ep = current_ep
