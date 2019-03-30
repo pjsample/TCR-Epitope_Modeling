@@ -2,7 +2,7 @@
 
 The goal of this project was to learn more about T cell receptors, epitope binding, and the challenges of building a model capable of taking any given TCR sequence and epitope sequence and predicting their interaction.
 
-This work is heavily inspired by the work of *Jurtz et. al.* [NetTCR: sequence-based prediction of TCR binding to peptide-MHC complexes using convolutional neural networks](https://www.biorxiv.org/content/10.1101/433706v1).
+This work is heavily inspired by the work of *Jurtz et. al.* [NetTCR: sequence-based prediction of TCR binding to peptide-MHC complexes using convolutional neural networks](https://www.biorxiv.org/content/10.1101/433706v1). There are several differences between their work and this project. This includes the CNN architecture and the CDR3 sequence and epitope sequence encoding scheme. I also expanded the analysis to include CDR3α, CDR3β, and the concatenation of the two.
 
 CDR3 alpha, beta, or both were one-hot encoded to serve as input to the first convolution layer. The sequences of the epitopes were not used. Instead they were encoded as categorical variables. This was done to reduce the total number of features introduced to the model. The ultimate goal of building a predictive model of TCR-epitope binding would require the epitope sequence for *de novo* predictions. The limited number of examples in public databases make this a difficult goal. For this project, I limited the scope to 4 epitopes (NLVPMVATV, GILGFVFTL, GLCTLVAML, LLWNGPMAV) presented by the MHCI allele HLA-A\*02:01.
 
