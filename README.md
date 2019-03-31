@@ -35,10 +35,13 @@ Ultimately, I think it's safe to say that the V & J segments are contributing si
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/alpha_vj_only.png "VJ-only alpha model")
 
 ### CDR3β VJ-only
-The ability of a CDR3β VJ-only model to discriminate between binders and non-binders is significantly reduced in comparison to full sequence models.
+The ability of a CDR3β VJ-only model to discriminate between binders and non-binders is significantly reduced in comparison to full sequence models. However, the number of samples in the test set are dramatically reduced when modeling on VJ-only; LLWNGPMAV went from 192 to 12 examples. This means that, when modeling on the full CDR3β sequence, the test set had sequences with identical VJ sequences as the train set, which should make it easier for correct classification.
+
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/beta_vj_only.png "VJ-only beta model")
 
 ### CDR3α & CDR3β VJ-only
+When comparing models built using concatenated CDR3α & CDR3β full sequences to the VJ-only concatenated sequences, the mean AUC is nearly the same. But again, the reduced number of sequences makes direct comparison unreliable. It's interesting, however, that the two VJ-only CDR3s together rescue the ability to correctly classify LLWNGPMAV -- the VJ-only CDR3β models always predicted no binding.
+
 ![alt text](https://github.com/pjsample/TCR-Epitope_Modeling/blob/master/images/full_chain_vj_only.png "VJ-only alpha & beta model")
 
 
